@@ -8,9 +8,19 @@ module.exports = {
   theme: {
     darkMode: "class",
     extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"], // Menambahkan Inter sebagai font utama
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+    },
+  },
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"], // Menambahkan Inter sebagai font utama
       },
     },
   },

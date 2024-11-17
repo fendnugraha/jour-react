@@ -1,3 +1,21 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"); */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-200;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white p-4 rounded-2xl shadow;
+  }
+
+  .button {
+    @apply bg-blue-500 text-white py-3 px-6 rounded-2xl;
+  }
+}
