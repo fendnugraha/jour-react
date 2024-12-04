@@ -16,14 +16,12 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        "http://jouraccounting-livewire.test/api/login",
+        `${process.env.NEXT_PUBLIC_API_URL}/login`,
         {
           email,
           password,
         }
       );
-
-      console.log("Response received:", response.data); // Log respons untuk debugging
 
       // Jika response berisi token
       if (response.data?.token) {
