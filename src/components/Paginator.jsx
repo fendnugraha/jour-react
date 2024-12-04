@@ -1,25 +1,26 @@
 import Link from "next/link";
 export default function Paginator({ links, handleChangePage }) {
   return (
-    <div className="bg-white dark:bg-gray-800 dark:text-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div className="flex items-center justify-between border-t border-gray-200 ">
       <div className="flex-1 flex justify-between sm:hidden">
         <button
           onClick={() => handleChangePage(links.prev_page_url)}
           disabled={!links.prev_page_url}
-          className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
         >
           Previous
         </button>
         <button
           onClick={() => handleChangePage(links.next_page_url)}
-          className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          disabled={!links.next_page_url}
+          className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
         >
           Next
         </button>
       </div>
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm text-gray-700 p-1 dark:text-white">
+          <p className="text-xs text-gray-700 p-1 dark:text-white">
             Showing
             <span className="font-medium mx-1">{links.from}</span>
             to
@@ -42,11 +43,15 @@ export default function Paginator({ links, handleChangePage }) {
                     disabled={!link.url}
                     className={
                       link.active
-                        ? "z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                        : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                        ? "z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-xs font-medium"
+                        : "border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-xs font-medium"
                     }
                   >
-                    {link.label}
+                    {link.label === "&laquo; Previous"
+                      ? "<"
+                      : link.label === "Next &raquo;"
+                      ? ">"
+                      : link.label}
                   </button>
                 ))
               : null}
