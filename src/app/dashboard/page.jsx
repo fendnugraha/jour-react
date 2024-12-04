@@ -7,14 +7,15 @@ import { useRouter } from "next/navigation";
 import Paginator from "@/components/Paginator";
 
 export default function Dashboard() {
-  const [productTable, setProductTable] = useState([]);
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
-
   const token = localStorage.getItem("token");
   if (!token) {
-    router.push("/login");
+    window.location.href = "/login";
   }
+
+  const [productTable, setProductTable] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const fetchProduct = async (url) => {
     try {
       const response = await axios.get(`${url}`, {
@@ -36,44 +37,48 @@ export default function Dashboard() {
   };
   return (
     <>
-      <Navbar />
-      <div className="m-12">
-        <table className="w-full table-auto text-xs">
-          <thead>
-            <tr className="border-b border-slate-200">
-              <th className="p-4">Name</th>
-              <th>Qty</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {productTable.data && productTable.data.length > 0 ? (
-              productTable.data.map((item, index) => (
-                <tr className="border-b" key={index}>
-                  <td className="p-3">{item.name}</td>
-                  <td>{item.end_stock}</td>
-                  <td className="text-end p-3">{item.price}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3" className="text-center">
-                  No products available
-                </td>
+      <Navbar>
+        <div className="m-12">
+          <table className="w-full table-auto text-xs">
+            <thead>
+              <tr className="border-b border-slate-200">
+                <th className="p-4">Name</th>
+                <th>Qty</th>
+                <th>Price</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-        <div className="my-2">
-          <Paginator links={productTable} handleChangePage={handleChangePage} />
-          {/* <button
+            </thead>
+            <tbody>
+              {productTable.data && productTable.data.length > 0 ? (
+                productTable.data.map((item, index) => (
+                  <tr className="border-b" key={index}>
+                    <td className="p-3">{item.name}</td>
+                    <td>{item.end_stock}</td>
+                    <td className="text-end p-3">{item.price}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="3" className="text-center">
+                    No products available
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <div className="my-2">
+            <Paginator
+              links={productTable}
+              handleChangePage={handleChangePage}
+            />
+            {/* <button
             onClick={() => handleChangePage(productTable.next_page_url)}
             className="bg-red-300 p-4 rounded-xl"
           >
             Next Page
           </button> */}
+          </div>
         </div>
-      </div>
+      </Navbar>
     </>
   );
 }
