@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Paginator from "@/components/Paginator";
 
 export default function Dashboard() {
   const [productTable, setProductTable] = useState([]);
@@ -33,8 +34,6 @@ export default function Dashboard() {
   const handleChangePage = (url) => {
     fetchProduct(url);
   };
-
-  console.log(productTable.next_page_url);
   return (
     <>
       <Navbar />
@@ -66,12 +65,13 @@ export default function Dashboard() {
           </tbody>
         </table>
         <div className="my-2">
-          <button
+          <Paginator links={productTable} handleChangePage={handleChangePage} />
+          {/* <button
             onClick={() => handleChangePage(productTable.next_page_url)}
             className="bg-red-300 p-4 rounded-xl"
           >
             Next Page
-          </button>
+          </button> */}
         </div>
       </div>
     </>

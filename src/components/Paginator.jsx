@@ -1,21 +1,21 @@
 import Link from "next/link";
-export default function Paginator({ links }) {
-  console.log(links.next_page_url);
+export default function Paginator({ links, handleChangePage }) {
   return (
     <div className="bg-white dark:bg-gray-800 dark:text-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
       <div className="flex-1 flex justify-between sm:hidden">
-        <a
-          href={links.prev_page_url}
+        <button
+          onClick={() => handleChangePage(links.prev_page_url)}
+          disabled={!links.prev_page_url}
           className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
         >
           Previous
-        </a>
-        <a
-          href={links.next_page_url}
+        </button>
+        <button
+          onClick={() => handleChangePage(links.next_page_url)}
           className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
         >
           Next
-        </a>
+        </button>
       </div>
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
@@ -35,10 +35,11 @@ export default function Paginator({ links }) {
             aria-label="Pagination"
           >
             {links.links && links.links.length > 1
-              ? links.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link?.url}
+              ? links.links.map((link, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleChangePage(link?.url)}
+                    disabled={!link.url}
                     className={
                       link.active
                         ? "z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
@@ -46,7 +47,7 @@ export default function Paginator({ links }) {
                     }
                   >
                     {link.label}
-                  </a>
+                  </button>
                 ))
               : null}
           </nav>
