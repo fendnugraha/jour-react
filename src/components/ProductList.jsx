@@ -8,27 +8,10 @@ const products = [
 
 const ProductList = ({ addToCart }) => {
     return (
-        <div className="bg-white p-4 rounded shadow">
-            <h2 className="text-xl font-bold mb-4">Products</h2>
-            <ul className="space-y-4">
-                {products.map((product) => (
-                    <li
-                        key={product.id}
-                        className="flex justify-between items-center p-4 border rounded hover:bg-gray-100"
-                    >
-                        <div>
-                            <h3 className="font-medium">{product.name}</h3>
-                            <p className="text-gray-600">${product.price}</p>
-                        </div>
-                        <button
-                            onClick={() => addToCart(product)}
-                            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                        >
-                            Add to Cart
-                        </button>
-                    </li>
-                ))}
-            </ul>
+        <div className="grid grid-cols-5 gap-4 grid-rows-2 w-full">
+            <div className="bg-gray-200 p-4">
+                <h1>Grid 1</h1>
+            </div>
         </div>
     );
 };
