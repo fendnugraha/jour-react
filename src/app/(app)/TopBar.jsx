@@ -26,12 +26,10 @@ const TopBar = ({ headerTitle }) => {
     }, [isOpen]);
     return (
         <>
-            <header className="w-full h-20 flex items-center justify-between px-4 sm:px-6 py-2">
-                <h1 className="text-md sm:text-2xl font-bold text-slate-700 dark:text-white">
-                    {headerTitle}
-                    <span className="text-xs font-normal p-0 sm:block hidden">Warehouse Name</span>
-                </h1>
+            <header className="bg-white dark:bg-slate-700 w-full h-14 flex items-center justify-between px-4 sm:px-6 py-2">
+                <h1 className="text-md sm:text-lg font-bold text-slate-700 dark:text-white">{headerTitle}</h1>
                 <div className="flex items-center justify-end sm:gap-4">
+                    <span className="text-xs sm:text-sm font-normal p-0 sm:block hidden">Warehouse Name</span>
                     <button className="sm:hidden">
                         {!isOpen ? <MenuIcon size={30} onClick={() => setIsOpen(!isOpen)} /> : <XIcon size={30} onClick={() => setIsOpen(!isOpen)} />}
                     </button>

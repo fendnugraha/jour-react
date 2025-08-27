@@ -13,13 +13,13 @@ const Navigation = () => {
         <>
             <nav className={`hidden sm:flex sm:flex-col ${isMenuOpen ? "w-64" : "w-16"} h-screen justify-between transition-all duration-200 ease-in`}>
                 {/* Header */}
-                <button className="flex items-center cursor-pointer text-blue-800 dark:text-white">
+                <button className="bg-white dark:bg-slate-700 flex items-center cursor-pointer text-sky-800 dark:text-yellow-300">
                     {/* Tombol Toggle */}
                     <span
-                        className="w-16 h-20 flex items-center justify-center flex-shrink-0 text-slate-700 dark:text-white"
+                        className="w-16 h-14 flex items-center justify-center flex-shrink-0 text-slate-700 dark:text-white"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
-                        <Menu size={32} />
+                        <Menu size={28} />
                     </span>
 
                     {/* Logo Text */}
@@ -28,10 +28,7 @@ const Navigation = () => {
                             isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
                         }`}
                     >
-                        <h1 className={`text-xl font-bold `}>
-                            Eightnite
-                            <span className="text-slate-500 dark:text-white block text-xs font-normal text-start">STUDIO ID</span>
-                        </h1>
+                        <h1 className={`text-xl font-bold text-nowrap`}>Eightnite ID</h1>
                         <DarkModeToggle />
                     </div>
                 </button>
@@ -41,12 +38,12 @@ const Navigation = () => {
                         {navMenu.mainMenu.map((item, index) => (
                             <li key={index}>
                                 <NavLink href={item.href} active={pathName.startsWith(item.path)}>
-                                    <span className="w-16 h-14 flex items-center justify-center flex-shrink-0 text-slate-500">
+                                    <span className="w-16 h-12 flex items-center justify-center flex-shrink-0 text-slate-500">
                                         <item.icon size={16} className="" />
                                     </span>
                                     <span
                                         className={`text-sm transition-all duration-300 origin-left ${
-                                            isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                                            isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-0"
                                         }`}
                                     >
                                         {item.name}
